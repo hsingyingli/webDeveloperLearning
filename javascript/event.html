@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>event</title>
+        <script type="text/javascript">
+            function over(object){
+                object.style.color="red";
+            }
+
+            function out(object){
+                object.style.color="black";
+            }
+
+            function init(){
+                let button = document.getElementById("btn");
+                // btn.onclick = () => {
+                //     alert("click")
+                // }
+                var handler = () => {
+                    alert("click");
+                };
+
+                button.addEventListener("click", handler);
+            }
+
+            
+        </script>
+
+
+        <style type="text/css">
+        
+        </style>
+    </head>
+
+
+
+    <body onload="init();">
+        <button id="btn">Click</button>
+
+
+        
+    </body>
+    <!-- <body>
+        <button onclick="alert('click')">Click</button>
+        <span onmouseover="this.style.color='red';" onmouseout="this.style.color='black';">Text</span>
+        <span onmouseover="over(this);" onmouseout="out(this);">Text</span>
+    </body> -->
+
+
+</html>

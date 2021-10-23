@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title> HTML DOM </title>
+        <script type="text/javascript">
+            function toggleMenu(number) {
+                let menu = document.getElementById("menu-"+number);
+                menu.classList.toggle("hide");
+            }
+
+        </Script>
+
+        <style type="text/css">
+            .hide{display: none;}
+        </style>
+    </head>
+
+    <body>
+        <div onclick="toggleMenu(1)">list title</div>
+        <ul id="menu-1">
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+        </ul>
+
+        <div onclick="toggleMenu(2)">list title</div>
+        <ul id="menu-2">
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+        </ul>
+
+        <div onclick="toggleMenu(3)">list title</div>
+        <ul id="menu-3">
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+        </ul>
+
+
+    </body>
+
+
+</html>

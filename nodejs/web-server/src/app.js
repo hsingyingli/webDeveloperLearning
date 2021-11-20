@@ -1,6 +1,9 @@
 const hbs = require('hbs')
 const express = require('express')
 const path    = require('path')
+const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
+const { response } = require('express')
 
 
 const app = express()
@@ -38,14 +41,46 @@ app.get('/about', (request, response) => {
 })
 
 app.get('/weather', (request, response) => {
+    if (!request.query.location) {
+        return response.send({
+            error: 'You must provide location'
+        })
+    }
+    
+    geocode(request.query.location, (error, {latitude, longitude, location} = {}) => {
+        if (error) return response.send({error:error})
+
+        forecast(latitude, longitude, (error, forecastData) => {
+            if (error) return response.send({error:error})
+            
+            response.render( 'weather', {
+                title: 'weather',
+                location: location,
+                forecast: forecastData
+            })
+        })
+    })
+
+    
+})
+
+app.get('/products', (request, response) => {
+    console.log(request.query)
     response.send({
-        location: 'Taipei, Taiwan',
-        forecast: 'It is rain'
+        'product': []
     })
 })
 
+
+
+app.get('/help/*', (request, response) => {
+    response.send('help not found')
+}) 
+
 app.get('*', (request, response) => {
-    response.send('404')
+    response.render('404', {
+        title: '404 not found'
+    })
 })
 
 
